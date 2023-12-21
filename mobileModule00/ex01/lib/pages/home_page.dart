@@ -1,17 +1,16 @@
+import 'package:ex01/main.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
     var textStyle = theme.textTheme.displayMedium!
         .copyWith(color: theme.colorScheme.onPrimary);
-
-    void onPress() {
-      print('Button pressed');
-    }
 
     return Scaffold(
       body: Center(
@@ -23,13 +22,17 @@ class HomePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
-                  'A simple text',
+                  appState.text,
                   style: textStyle,
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(onPressed: onPress, child: const Text('Click me'))
+            ElevatedButton(
+                onPressed: () {
+                  appState.toggleText();
+                },
+                child: const Text('Click me'))
           ],
         ),
       ),
