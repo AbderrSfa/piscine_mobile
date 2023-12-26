@@ -2,6 +2,13 @@ import 'package:ex03/pages/components/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
+///////////////////////////////////////////
+///                                     ///
+///         NOT RESPONSIVE YET          ///
+///                                     ///
+///////////////////////////////////////////
+
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
