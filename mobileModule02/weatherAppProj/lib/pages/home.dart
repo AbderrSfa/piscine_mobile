@@ -17,12 +17,15 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: _myAppBar(theme, appState),
         bottomNavigationBar: const MyBottomAppBar(),
-        body: const TabBarView(
-          children: [
-            TabContent(section: 'Currently'),
-            TabContent(section: 'Today'),
-            TabContent(section: 'Weekly'),
-          ],
+        body: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: TabBarView(
+            children: [
+              TabContent(section: 'Currently'),
+              TabContent(section: 'Today'),
+              TabContent(section: 'Weekly'),
+            ],
+          ),
         ),
       ),
     );
@@ -51,8 +54,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
             suffixIcon: GestureDetector(
-              onTap: () {
-                appState.setLocation('Geolocation');
+              onTap: () async {
+                appState.getGeolocation();
               },
               child: Icon(
                 Icons.gps_fixed_rounded,

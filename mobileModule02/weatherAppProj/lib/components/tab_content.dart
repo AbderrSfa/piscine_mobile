@@ -14,24 +14,37 @@ class TabContent extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     final theme = Theme.of(context);
-    final locationStyle = theme.textTheme.headlineLarge!.copyWith(
-        color: theme.colorScheme.primary, fontWeight: FontWeight.bold);
+    final locationStyle = theme.textTheme.headlineMedium!.copyWith(
+      color: theme.colorScheme.primary,
+      fontWeight: FontWeight.bold,
+    );
     final titleStyle =
         theme.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold);
+    final errorStyle = titleStyle.copyWith(color: theme.colorScheme.error);
 
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          section,
-          style: titleStyle,
-        ),
-        Text(
-          appState.location,
-          style: locationStyle,
-        ),
-      ],
+      children: !appState.geolocationPermError
+          ? [
+              Text(
+                section,
+                style: titleStyle,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                appState.location,
+                style: locationStyle,
+                textAlign: TextAlign.center,
+              ),
+            ]
+          : [
+              Text(
+                'Geolocation is not available, please enable it in you App settings',
+                style: errorStyle,
+                textAlign: TextAlign.center,
+              )
+            ],
     ));
   }
 }
